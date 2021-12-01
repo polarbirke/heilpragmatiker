@@ -1,0 +1,11 @@
+{
+  "name": "heilpragmatiker",
+  "version": "0.0.1",
+  "repository": "git@github.com:polarbirke/heilpragmatiker.git",
+  "author": "Søren Birkemeyer <polarbirke@gmx.de>",
+  "devDependencies": {
+    "@11ty/eleventy": "^0.12.1",
+    "luxon": "^2.1.1",
+    "node-fetch": "^2.6.6"
+  }
+}
