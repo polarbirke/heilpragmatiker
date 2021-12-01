@@ -39,15 +39,25 @@
             align-self: end;
             text-align: center;
         }
+
+        .mt-100 {
+            margin-top: 0.25rem;
+        }
+
+        .opacity-80 {
+            opacity: 0.8;
+        }
     </style>
 </head>
 <body>
 <main>
-    <h1 style="color: {{ covidData.text }};">Lasst euch impfen!</h1>
+    <h1>Lasst euch impfen!</h1>
+    {% if covidData.weekIncidence %}
     <div class="meta">
         <p>Aktuelle 7-Tage-Inzidenz: {{ covidData.weekIncidence }}</p>
-        {% if covidData.lastUpdate %}<p><small>(Quelle: <a href="https://corona.rki.de">RKI</a>; letztes Update {{ covidData.lastUpdate|readableDate }})</small></p>{% endif %}
+        {% if covidData.lastUpdate %}<p class="mt-100 opacity-80"><small>(Quelle: <a href="https://corona.rki.de">RKI</a>; letztes Update {{ covidData.lastUpdate|readableDate }} Uhr)</small></p>{% endif %}
     </div>
+    {% endif %}
 </main>
 </body>
 </html>
