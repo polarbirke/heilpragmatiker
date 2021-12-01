@@ -25,7 +25,7 @@ function getColorFromIncidence(colorRanges, incidence) {
         .filter(obj => obj.min < incidence);
 
     if (range.length === 1) {
-        return range[0].color;
+        return stripHashFromHexcolor(range[0].color);
     } else {
         console.log('Could not determine a definitive range');
     }
@@ -38,11 +38,18 @@ function getColorFromIncidence(colorRanges, incidence) {
  * @param  {String} A hexcolor value
  * @return {String} The contrasting color (black or white)
  */
-function getContrast(hexcolor) {
+function stripHashFromHexcolor(hexcolor) {
     // If a leading # is provided, remove it
     if (hexcolor.slice(0, 1) === '#') {
         hexcolor = hexcolor.slice(1);
     }
+
+    return hexcolor;
+}
+
+function getContrast(hexcolor) {
+    // If a leading # is provided, remove it
+    hexcolor = stripHashFromHexcolor(hexcolor);
 
     // If a three-character hexcode, make six-character
     if (hexcolor.length === 3) {
@@ -60,7 +67,7 @@ function getContrast(hexcolor) {
     let yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
 
     // Check contrast
-    return (yiq >= 128) ? 'rgba(0,0,0,0.9)' : 'rgba(255,255,255,0.9)';
+    return (yiq >= 128) ? '000000' : 'ffffff';
 }
 
 
@@ -69,12 +76,13 @@ module.exports = async function() {
     const incidentColorRangesStates = await getRkiApiData('map/states/legend');
 
     const covidData = {
-        incidenceColor: '#fff', // fallback for body background-color
-        textColor: '#000',      // fallback for text colors
+        incidenceColor: 'ffffff', // fallback for body background-color
+        textColor: '000000',      // fallback for text colors
     }
 
     if (dataGermany) {
         covidData.weekIncidence = roundToTwo(dataGermany.weekIncidence);
+        covidData.weekIncidenceInteger = Math.round(dataGermany.weekIncidence);
         covidData.lastUpdate = dataGermany.meta.lastUpdate;
     }
 
