@@ -6,7 +6,7 @@ module.exports = function(eleventyConfig) {
     // --------------------------------------------------------
     eleventyConfig.addFilter("readableDate", dateObj => {
         const d = DateTime.fromISO(dateObj);
-        return d.setLocale('ru').toLocaleString(DateTime.DATETIME_SHORT);
+        return d.setLocale('de').toLocaleString(DateTime.DATETIME_MED);
     });
 
     // Base setup
