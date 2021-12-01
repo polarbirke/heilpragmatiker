@@ -55,7 +55,7 @@
     <h1>Lasst euch impfen!</h1>
     {% if covidData.weekIncidence %}
     <div class="meta">
-        <p>Aktuelle 7-Tage-Inzidenz: {{ covidData.weekIncidence }}</p>
+        <p>Aktuelle 7-Tage-Inzidenz in Deutschland: {{ covidData.weekIncidence }}</p>
         {% if covidData.lastUpdate %}<p class="mt-100 opacity-80"><small>(Quelle: <a href="https://corona.rki.de">RKI</a>; letztes Update {{ covidData.lastUpdate|readableDate }} Uhr)</small></p>{% endif %}
     </div>
     {% endif %}
